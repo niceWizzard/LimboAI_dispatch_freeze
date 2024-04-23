@@ -25,11 +25,11 @@ idle = NodePath("Idle")
 walking = NodePath("Walking")
 sprinting = NodePath("Sprinting")
 
-[node name="Walking" type="LimboState" parent="Root/Standing"]
-script = ExtResource("5_4iy68")
-
 [node name="Idle" type="LimboState" parent="Root/Standing"]
 script = ExtResource("4_ki10u")
+
+[node name="Walking" type="LimboState" parent="Root/Standing"]
+script = ExtResource("5_4iy68")
 
 [node name="Sprinting" type="LimboState" parent="Root/Standing"]
 
