@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed := 2.0
+@export var speed := 200.0
 @export var hsm: LimboHSM
 @export var standing: LimboState
 @export var crouching: LimboState
