@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bu2mb5fvmfpap"]
+
+[ext_resource type="Texture2D" uid="uid://b1wu6kjkmoiam" path="res://icon.svg" id="1_5m3vi"]
+[ext_resource type="Script" path="res://player].gd" id="1_hdjxe"]
+[ext_resource type="Script" path="res://States/Standing/Standing.gd" id="3_vtx3h"]
+[ext_resource type="Script" path="res://States/Crouching/Crouching.gd" id="4_giy7v"]
+[ext_resource type="Script" path="res://States/Standing/Idle.gd" id="4_ki10u"]
+[ext_resource type="Script" path="res://States/Standing/Walking.gd" id="5_4iy68"]
+
+[node name="Node2D" type="CharacterBody2D" node_paths=PackedStringArray("hsm", "standing", "crouching")]
+script = ExtResource("1_hdjxe")
+hsm = NodePath("Root")
+standing = NodePath("Root/Standing")
+crouching = NodePath("Root/Crouching")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(10, 19)
+texture = ExtResource("1_5m3vi")
+
+[node name="Root" type="LimboHSM" parent="."]
+
+[node name="Standing" type="LimboHSM" parent="Root" node_paths=PackedStringArray("idle", "walking", "sprinting")]
+script = ExtResource("3_vtx3h")
+idle = NodePath("Idle")
+walking = NodePath("Walking")
+sprinting = NodePath("Sprinting")
+
+[node name="Idle" type="LimboState" parent="Root/Standing"]
+script = ExtResource("4_ki10u")
+
+[node name="Walking" type="LimboState" parent="Root/Standing"]
+script = ExtResource("5_4iy68")
+
+[node name="Sprinting" type="LimboState" parent="Root/Standing"]
+
+[node name="Crouching" type="LimboHSM" parent="Root" node_paths=PackedStringArray("idle", "walking")]
+script = ExtResource("4_giy7v")
+idle = NodePath("Idle")
+walking = NodePath("Walking")
+
+[node name="Idle" type="LimboState" parent="Root/Crouching"]
+
+[node name="Walking" type="LimboState" parent="Root/Crouching"]
